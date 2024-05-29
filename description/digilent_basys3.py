@@ -20,7 +20,7 @@ from litex.soc.cores.video import VideoVGAPHY
 from litex.soc.cores.led import LedChaser
 
 ###
-from litex.soc.cores.gpio import GPIOOut
+from litex.soc.cores.gpio import *
 # CRG ----------------------------------------------------------------------------------------------
 
 class _CRG(LiteXModule):
@@ -50,6 +50,16 @@ class BaseSoC(SoCCore):
 
         led_user_7 = platform.request("user_led", 7)
         self.submodules.led_user_7 = GPIOOut(led_user_7)
+
+        sw_user_0 = platform.request("user_sw", 0)
+        self.submodules.sw_user_0 = GPIOIn(sw_user_0)
+
+        sw_user_3 = platform.request("user_sw", 3)
+        self.submodules.sw_user_3 = GPIOIn(sw_user_3)
+
+        gpio_a0 = platform.request("gpio", 0)  # "a" is the sub-signal name, and [0] accesses the first pin in that sub-signa
+        self.submodules.gpio_a0 = GPIOIn (gpio_a0)
+
         ###
 
         # CRG --------------------------------------------------------------------------------------
